@@ -1,0 +1,661 @@
+/* =========================================
+   1. Imports & Fonts
+   ========================================= */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
+
+/* =========================================
+   2. Global Resets
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Poppins", "Nunito", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  /* Dark background with overlay image */
+  background-color: #232228;
+  background-image: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-blend-mode: overlay;
+  color: #ddd;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* =========================================
+   3. Navbar (Glassmorphism)
+   ========================================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+
+  /* Glass Effect */
+  background: rgba(23, 23, 23, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.brand-text {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.brand-text:hover {
+  color: #ffd700;
+}
+
+.logos {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.logos img {
+  height: 50px;
+  width: auto;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.logos img:hover {
+  transform: scale(1.1);
+}
+
+/* =========================================
+   4. Timeline Section
+   ========================================= */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 150px auto 100px auto; /* Added top margin for fixed navbar */
+}
+
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  top: 0;
+  left: 50%;
+  margin-left: -3px;
+  z-index: -1;
+  animation: moveline 2s linear forwards;
+}
+
+.container {
+  padding: 10px 50px;
+  position: relative;
+  width: 50%;
+  animation: movedown 1s linear forwards;
+  opacity: 0;
+}
+
+/* Animation Delays */
+.container:nth-child(1) {
+  animation-delay: 0s;
+}
+.container:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.container:nth-child(3) {
+  animation-delay: 1s;
+}
+.container:nth-child(4) {
+  animation-delay: 1.5s;
+}
+.container:nth-child(5) {
+  animation-delay: 2s;
+}
+.container:nth-child(6) {
+  animation-delay: 2.5s;
+}
+
+.text-box {
+  padding: 20px 30px;
+  background: rgba(40, 40, 40, 0.8);
+  position: relative;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 16px;
+  text-align: right; /* Adjusted for Arabic text usually */
+  transition: 0.3s;
+  color: #ccc;
+}
+
+.text-box:hover {
+  background: rgba(60, 60, 60, 0.9);
+  border-color: #05affe;
+  transform: scale(1.02);
+}
+
+.text-box h2 {
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.left-container {
+  left: 0;
+}
+.right-container {
+  left: 50%;
+}
+
+.container img {
+  position: absolute;
+  width: 40px;
+  border-radius: 50%;
+  right: -20px;
+  top: 32px;
+  z-index: 10;
+  border: 2px solid #fff;
+}
+
+.right-container img {
+  left: -20px;
+}
+.left-container img {
+  right: -20px;
+}
+
+/* Arrows */
+.left-container-arrow,
+.right-container-arrow {
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 28px;
+  z-index: 1;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+.left-container-arrow {
+  border-left: 15px solid rgba(40, 40, 40, 0.8);
+  right: -14px;
+}
+
+.right-container-arrow {
+  border-right: 15px solid rgba(40, 40, 40, 0.8);
+  left: -14px;
+}
+
+/* =========================================
+   5. Card Styles (Unified)
+   ========================================= */
+.card {
+  width: 90%;
+  max-width: 1432px;
+  min-height: 750px; /* Changed to min-height for content flexibility */
+  margin: 50px auto;
+  z-index: 10;
+  position: relative;
+  display: block;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 2.25rem;
+  overflow: hidden; /* Ensures content doesn't spill out */
+}
+
+/* Card Header */
+.card-header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5em;
+  z-index: 20;
+}
+
+.card-header .date {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Card Body */
+.card-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 80px; /* Space for header */
+  padding-bottom: 100px; /* Space for footer */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Card Footer */
+.card-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #151419;
+  border-top: 1px solid #333;
+}
+
+.card-footer .title {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.card-footer .content {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Footer Icons */
+.card-footer a {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #222;
+  color: var(--color, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  transition: 0.3s ease;
+}
+
+.card-footer a:hover {
+  background: var(--color);
+  color: #fff;
+  box-shadow: 0 0 15px var(--color);
+}
+
+.icon-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================================
+   6. Slider & Gallery
+   ========================================= */
+.gallery {
+  width: 50%;
+  min-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+section[id^="slider"] {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 350px;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+input[type="radio"] {
+  position: relative;
+  top: 105%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin: 0 5px;
+  opacity: 0.5;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 100;
+}
+
+input[type="radio"]:checked {
+  opacity: 1;
+  accent-color: #fff;
+}
+
+section[id^="slider"] label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 400ms ease, box-shadow 400ms ease;
+  overflow: hidden;
+}
+
+section[id^="slider"] label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Slider Logic - Unified */
+/* Active */
+input[id*="1"]:checked ~ #slide1,
+input[id*="2"]:checked ~ #slide2,
+input[id*="3"]:checked ~ #slide3,
+input[id*="4"]:checked ~ #slide4,
+input[id*="5"]:checked ~ #slide5 {
+  transform: translate3d(0%, 0, 0px);
+  z-index: 5;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Next */
+input[id*="1"]:checked ~ #slide2,
+input[id*="2"]:checked ~ #slide3,
+input[id*="3"]:checked ~ #slide4,
+input[id*="4"]:checked ~ #slide5,
+input[id*="5"]:checked ~ #slide1 {
+  transform: translate3d(20%, 0, -100px);
+  z-index: 4;
+}
+
+/* Previous */
+input[id*="1"]:checked ~ #slide5,
+input[id*="2"]:checked ~ #slide1,
+input[id*="3"]:checked ~ #slide2,
+input[id*="4"]:checked ~ #slide3,
+input[id*="5"]:checked ~ #slide4 {
+  transform: translate3d(-20%, 0, -100px);
+  z-index: 4;
+}
+
+/* Far Next/Prev */
+input[id*="1"]:checked ~ #slide3,
+input[id*="2"]:checked ~ #slide4,
+input[id*="3"]:checked ~ #slide5,
+input[id*="4"]:checked ~ #slide1,
+input[id*="5"]:checked ~ #slide2,
+input[id*="1"]:checked ~ #slide4,
+input[id*="2"]:checked ~ #slide5,
+input[id*="3"]:checked ~ #slide1,
+input[id*="4"]:checked ~ #slide2,
+input[id*="5"]:checked ~ #slide3 {
+  transform: translate3d(0%, 0, -250px);
+  z-index: 3;
+  opacity: 0.8;
+}
+
+/* =========================================
+   7. Text Animations & Boxes
+   ========================================= */
+.boxes_animation {
+  width: 50%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.box {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid var(--accent-color, #05affe);
+  opacity: 0;
+  transform: translateX(100px);
+  animation: slideIn 1s ease forwards;
+}
+
+.box h1 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.box:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.box:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.box:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+/* =========================================
+   8. Specific Card Colors & Gradients
+   ========================================= */
+.card.blue {
+  --accent-color: #1890ff;
+}
+.card.green {
+  --accent-color: #01c3a8;
+}
+.card.orange {
+  --accent-color: #ffb741;
+}
+.card.red {
+  --accent-color: #a63d2a;
+}
+
+.blue {
+  background: radial-gradient(
+    ellipse at right top,
+    rgba(0, 69, 143, 0.4) 0%,
+    #151419 60%
+  );
+}
+.green {
+  background: radial-gradient(
+    ellipse at right top,
+    rgba(16, 118, 103, 0.4) 0%,
+    #151419 60%
+  );
+}
+.orange {
+  background: radial-gradient(
+    ellipse at right top,
+    rgba(255, 183, 65, 0.4) 0%,
+    #151419 60%
+  );
+}
+
+/* Border Gradient Effect */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 2.25rem;
+  padding: 2px;
+  background: linear-gradient(45deg, #232228, var(--accent-color, #fff));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* =========================================
+   9. Special Banner (Rosetta Stone)
+   ========================================= */
+.banner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.product {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  z-index: 5;
+  transition: 0.5s;
+}
+
+.product:hover {
+  transform: scale(1.05);
+}
+
+.product .soda {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   10. Animations Keyframes
+   ========================================= */
+@keyframes moveline {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes movedown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* =========================================
+   11. Mobile Responsiveness
+   ========================================= */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .timeline::after {
+    left: 31px;
+  }
+
+  .container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 20px;
+  }
+
+  .right-container {
+    left: 0;
+  }
+
+  .left-container-arrow,
+  .right-container-arrow {
+    border-right: 15px solid rgba(40, 40, 40, 0.8);
+    border-left: 0;
+    left: -15px;
+  }
+
+  .card {
+    height: auto;
+    padding-bottom: 20px;
+  }
+
+  .card-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery,
+  .boxes_animation {
+    width: 100%;
+    float: none;
+  }
+
+  .card-footer {
+    position: relative;
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+    padding: 20px;
+  }
+}
+/* تنسيق اللينك داخل التايم لاين عشان يبان إنه clickable */
+.timeline .scroll-link {
+  text-decoration: none;
+  color: inherit;
+  display: block; /* يخلي اللينك ياخد مساحة العنوان */
+}
+
+/* الأنيميشن اللي هيحصل للكارد لما نوصل له */
+@keyframes glowEffect {
+  0% {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    /* لمعة قوية بلون ذهبي أو أزرق فاتح */
+    box-shadow: 0 0 30px rgba(5, 175, 254, 0.8), 0 0 60px rgba(5, 175, 254, 0.4);
+    transform: scale(1.02); /* تكبير بسيط */
+    border-color: #05affe;
+  }
+  100% {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+    transform: scale(1);
+  }
+}
+
+/* الكلاس اللي الجافاسكريبت هيضيفه */
+.highlight-card {
+  animation: glowEffect 1.5s ease-in-out;
+  position: relative;
+  z-index: 100; /* عشان يطلع فوق أي حاجة تانية وهو بينور */
+}

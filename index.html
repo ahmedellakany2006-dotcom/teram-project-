@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Eagles Team - Historical Sites</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Poppins:wght@400;600;800&family=Nunito:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* =========================================
+       1. Global Resets & Body
+       ========================================= */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+        font-family: "Poppins", "Cairo", sans-serif; /* الخط الأساسي */
+      }
+
+      body {
+        min-height: 100vh;
+        background-color: #232228;
+        background-image: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        color: #ddd;
+        overflow-x: hidden;
+      }
+
+      a {
+        text-decoration: none;
+      }
+      p {
+        text-align: left;
+        line-height: 1.6;
+      }
+
+      /* =========================================
+       2. Navbar (New Styling)
+       ========================================= */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: rgba(20, 20, 25, 0.85);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(5, 175, 254, 0.2);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .brand-text {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        text-shadow: 0 0 10px rgba(5, 175, 254, 0.3);
+      }
+
+      .brand-text:hover {
+        color: #05affe;
+        text-shadow: 0 0 20px rgba(5, 175, 254, 0.8);
+      }
+
+      .logos {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .logos img {
+        height: 45px;
+        width: auto;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+      }
+
+      .logos img:hover {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 8px rgba(5, 175, 254, 0.8));
+      }
+
+      /* =========================================
+       NEW: Hero Section (Header Images with Shadow)
+       ========================================= */
+      .hero {
+        height: 100vh; /* واجهة كاملة */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        background: radial-gradient(
+          circle at center,
+          rgba(5, 175, 254, 0.1) 0%,
+          transparent 70%
+        );
+      }
+
+      /* تعديل الكونتينر عشان يشيل الصورتين جنب بعض */
+      .hero-img-container {
+        position: relative;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 40px; /* مسافة بين اللوجوهين */
+      }
+
+      /* الصور اللي طلبتها بالشادو (تنطبق على الاثنين) */
+      .hero-img {
+        width: 160px; /* صغرنا الحجم سنة عشان التناسق */
+        height: 160px;
+        object-fit: contain;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(5px);
+        border: 2px solid rgba(5, 175, 254, 0.5);
+
+        /* Shadow Box المطلوب (توهج أزرق قوي) */
+        box-shadow: 0 0 40px rgba(5, 175, 254, 0.6),
+          0 0 80px rgba(5, 175, 254, 0.2), inset 0 0 20px rgba(5, 175, 254, 0.2);
+
+        animation: float 4s ease-in-out infinite;
+      }
+
+      /* تأخير بسيط في أنيميشن الصورة التانية عشان يبانوا طبيعيين */
+      .hero-img:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+
+      .hero h1 {
+        font-family: "Cairo", sans-serif;
+        font-size: 3rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 10px;
+        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero p {
+        font-family: "Cairo", sans-serif;
+        font-size: 1.2rem;
+        color: #ccc;
+        max-width: 600px;
+        text-align: center;
+      }
+
+      /* أنيميشن الطيران للصورة */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      /* سهم ينزل لتحت */
+      .scroll-down {
+        position: absolute;
+        bottom: 30px;
+        color: #05affe;
+        font-size: 2rem;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* =========================================
+       3. Timeline Section (Updated Style)
+       ========================================= */
+      .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 50px auto 100px auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 100%;
+        background: rgba(5, 175, 254, 0.3);
+        box-shadow: 0 0 10px rgba(5, 175, 254, 0.5);
+        top: 0;
+        left: 50%;
+        margin-left: -2px;
+        z-index: 0;
+        animation: moveline 2s linear forwards;
+      }
+
+      .container {
+        padding: 10px 50px;
+        position: relative;
+        width: 50%;
+        animation: movedown 1s linear forwards;
+        opacity: 0;
+        z-index: 2;
+      }
+
+      .container:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .container:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      .container:nth-child(3) {
+        animation-delay: 1s;
+      }
+      .container:nth-child(4) {
+        animation-delay: 1.5s;
+      }
+      .container:nth-child(5) {
+        animation-delay: 2s;
+      }
+      .container:nth-child(6) {
+        animation-delay: 2.5s;
+      }
+      .container:nth-child(7) {
+        animation-delay: 3s;
+      }
+
+      .text-box {
+        padding: 20px 30px;
+        background: #1f1f24;
+        position: relative;
+        border-radius: 20px;
+        font-size: 16px;
+        text-align: right;
+        transition: all 0.4s ease;
+        color: #ccc;
+        cursor: pointer;
+        z-index: 10;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .text-box:hover {
+        background: #25252b;
+        border-color: #05affe;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(5, 175, 254, 0.2);
+      }
+
+      .text-box h2 {
+        font-family: "Cairo", sans-serif;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 8px;
+        transition: color 0.3s;
+        font-size: 1.4rem;
+      }
+
+      .text-box:hover h2 {
+        color: #05affe;
+      }
+
+      .text-box small {
+        font-family: "Poppins", sans-serif;
+        color: #05affe;
+        display: inline-block;
+        margin-bottom: 10px;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      .text-box p {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: #bbb;
+      }
+
+      .left-container {
+        left: 0;
+      }
+      .right-container {
+        left: 50%;
+      }
+
+      .container img {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+        right: -25px;
+        top: 32px;
+        z-index: 10;
+        border: 3px solid #1f1f24;
+        box-shadow: 0 0 10px rgba(5, 175, 254, 0.5);
+      }
+
+      .right-container img {
+        left: -25px;
+      }
+      .left-container img {
+        right: -25px;
+      }
+
+      .left-container-arrow,
+      .right-container-arrow {
+        height: 0;
+        width: 0;
+        position: absolute;
+        top: 38px;
+        z-index: 1;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        transition: all 0.4s ease;
+      }
+
+      .left-container-arrow {
+        border-left: 15px solid #1f1f24;
+        right: -14px;
+      }
+      .container:hover .left-container-arrow {
+        border-left-color: #25252b;
+      }
+
+      .right-container-arrow {
+        border-right: 15px solid #1f1f24;
+        left: -14px;
+      }
+      .container:hover .right-container-arrow {
+        border-right-color: #25252b;
+      }
+
+      /* =========================================
+       4. Card Styles (Compact & Auto-Play)
+       ========================================= */
+      .card {
+        width: 90%;
+        max-width: 1432px;
+        min-height: 600px;
+        margin: 40px auto;
+        z-index: 10;
+        position: relative;
+        display: block;
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+        border-radius: 2rem;
+        overflow: hidden;
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        scroll-margin-top: 80px;
+      }
+
+      @keyframes glowEffect {
+        0% {
+          box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+          transform: scale(1);
+        }
+        50% {
+          box-shadow: 0 0 30px rgba(5, 175, 254, 0.8);
+          transform: scale(1.01);
+          border-color: #05affe;
+        }
+        100% {
+          box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+          transform: scale(1);
+        }
+      }
+
+      .highlight-card {
+        animation: glowEffect 1.5s ease-in-out;
+        z-index: 100;
+        border: 2px solid #05affe;
+      }
+
+      .card-header {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1em;
+        z-index: 20;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+      }
+
+      .card-header .date {
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        text-align: center;
+      }
+
+      .card-body {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding-top: 70px;
+        padding-bottom: 90px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .card-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: #151419;
+        border-top: 1px solid #333;
+      }
+
+      .card-footer .title {
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #888;
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      .card-footer .content {
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      .card-footer a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #222;
+        color: var(--color, #fff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        transition: 0.3s ease;
+      }
+
+      .card-footer a:hover {
+        background: var(--color);
+        color: #fff;
+        box-shadow: 0 0 15px var(--color);
+      }
+
+      /* =========================================
+       5. Slider & Gallery
+       ========================================= */
+      .gallery {
+        width: 45%;
+        min-width: 350px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .gallery section {
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+        height: 300px;
+        perspective: 1400px;
+        transform-style: preserve-3d;
+      }
+
+      .gallery input[type="radio"] {
+        position: relative;
+        top: 105%;
+        left: 50%;
+        width: 15px;
+        height: 15px;
+        margin: 0 5px;
+        opacity: 0.5;
+        transform: translateX(-50%);
+        cursor: pointer;
+        z-index: 100;
+      }
+
+      .gallery input[type="radio"]:checked {
+        opacity: 1;
+        accent-color: #fff;
+      }
+
+      .gallery label {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 400ms ease, box-shadow 400ms ease;
+        overflow: hidden;
+        border: none !important;
+        outline: none !important;
+      }
+
+      .gallery label img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: none !important;
+      }
+
+      /* Slider Logic */
+      .gallery input:nth-of-type(1):checked ~ label:nth-of-type(1),
+      .gallery input:nth-of-type(2):checked ~ label:nth-of-type(2),
+      .gallery input:nth-of-type(3):checked ~ label:nth-of-type(3),
+      .gallery input:nth-of-type(4):checked ~ label:nth-of-type(4),
+      .gallery input:nth-of-type(5):checked ~ label:nth-of-type(5) {
+        transform: translate3d(0%, 0, 0px);
+        z-index: 5;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .gallery input:nth-of-type(1):checked ~ label:nth-of-type(2),
+      .gallery input:nth-of-type(2):checked ~ label:nth-of-type(3),
+      .gallery input:nth-of-type(3):checked ~ label:nth-of-type(4),
+      .gallery input:nth-of-type(4):checked ~ label:nth-of-type(5),
+      .gallery input:nth-of-type(5):checked ~ label:nth-of-type(1) {
+        transform: translate3d(20%, 0, -100px);
+        z-index: 4;
+      }
+
+      .gallery input:nth-of-type(1):checked ~ label:nth-of-type(5),
+      .gallery input:nth-of-type(2):checked ~ label:nth-of-type(1),
+      .gallery input:nth-of-type(3):checked ~ label:nth-of-type(2),
+      .gallery input:nth-of-type(4):checked ~ label:nth-of-type(3),
+      .gallery input:nth-of-type(5):checked ~ label:nth-of-type(4) {
+        transform: translate3d(-20%, 0, -100px);
+        z-index: 4;
+      }
+
+      .gallery input:nth-of-type(1):checked ~ label:nth-of-type(3),
+      .gallery input:nth-of-type(2):checked ~ label:nth-of-type(4),
+      .gallery input:nth-of-type(3):checked ~ label:nth-of-type(5),
+      .gallery input:nth-of-type(4):checked ~ label:nth-of-type(1),
+      .gallery input:nth-of-type(5):checked ~ label:nth-of-type(2) {
+        transform: translate3d(40%, 0, -250px);
+        z-index: 3;
+        opacity: 0.8;
+      }
+
+      .gallery input:nth-of-type(1):checked ~ label:nth-of-type(4),
+      .gallery input:nth-of-type(2):checked ~ label:nth-of-type(5),
+      .gallery input:nth-of-type(3):checked ~ label:nth-of-type(1),
+      .gallery input:nth-of-type(4):checked ~ label:nth-of-type(2),
+      .gallery input:nth-of-type(5):checked ~ label:nth-of-type(3) {
+        transform: translate3d(-40%, 0, -250px);
+        z-index: 3;
+        opacity: 0.8;
+      }
+
+      /* =========================================
+       6. Text Animation
+       ========================================= */
+      .boxes_animation {
+        width: 45%;
+        padding: 0 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .box {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 4px solid var(--accent-color, #05affe);
+        opacity: 0;
+        transform: translateX(100px);
+        animation: slideIn 1s ease forwards;
+      }
+
+      .box h1 {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+        color: #fff;
+      }
+
+      .box p {
+        font-size: 0.95rem;
+      }
+
+      .box:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .box:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .box:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+
+      /* =========================================
+       7. Card Colors
+       ========================================= */
+      .card.blue {
+        --accent-color: #1890ff;
+        background: radial-gradient(
+          ellipse at right top,
+          rgba(0, 69, 143, 0.4) 0%,
+          #151419 60%
+        );
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 2rem;
+        padding: 2px;
+        background: linear-gradient(45deg, #232228, var(--accent-color, #fff));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+
+      /* Keyframes */
+      @keyframes moveline {
+        0% {
+          height: 0;
+        }
+        100% {
+          height: 100%;
+        }
+      }
+      @keyframes movedown {
+        0% {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Mobile */
+      @media screen and (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          padding: 10px;
+          gap: 10px;
+        }
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .hero-img {
+          width: 120px;
+          height: 120px;
+        }
+        .hero-img-container {
+          gap: 20px;
+        }
+        .timeline::after {
+          left: 31px;
+        }
+        .container {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 20px;
+        }
+        .right-container {
+          left: 0;
+        }
+        .right-container img,
+        .left-container img {
+          left: 6px;
+        }
+        .left-container-arrow,
+        .right-container-arrow {
+          border-right: 15px solid #1f1f24;
+          border-left: 0;
+          left: -15px;
+        }
+        .container:hover .left-container-arrow,
+        .container:hover .right-container-arrow {
+          border-right-color: #25252b;
+        }
+        .card-body {
+          flex-direction: column;
+          align-items: center;
+          padding-top: 60px;
+        }
+        .gallery,
+        .boxes_animation {
+          width: 100%;
+        }
+        .card-footer {
+          flex-direction: column;
+          height: auto;
+          gap: 15px;
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="brand-text">The Eagles Team</div>
+      <div class="logos">
+        <img
+          src="./images/362247850_109655288869669_5081509513745639702_n-removebg-preview.png"
+          alt="Beheira Logo"
+        />
+        <img
+          src="./images/535284296_683746194672156_7763070802496654076_n-removebg-preview.png"
+          alt="FCI Logo"
+        />
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-img-container">
+        <img
+          src="./images/362247850_109655288869669_5081509513745639702_n-removebg-preview.png"
+          alt="Beheira Logo"
+          class="hero-img"
+        />
+        <img
+          src="./images/535284296_683746194672156_7763070802496654076_n-removebg-preview.png"
+          alt="FCI Logo"
+          class="hero-img"
+        />
+      </div>
+      <h1>The Eagles Team</h1>
+      <p>
+        مرحبا بكم في المشروع الخاص بفريق النسور
+        <br />
+        استكشفوا المواقع التاريخية في محافظة البحيرة من خلال هذا الموقع
+        الالكتروني.
+      </p>
+      <i class="fa-solid fa-angles-down scroll-down"></i>
+    </header>
+
+    <div class="timeline">
+      <div class="container right-container">
+        <img src="images/Naucratis.png" alt="Naucratis" />
+        <div class="text-box" data-target="#naucratis">
+          <h2>نقراطيس المعرفة</h2>
+          <small>القرن 7 ق.م</small>
+          <p>
+            مستعمرة يونانية قديمة كانت مركزاً للتبادل التجاري بين المصريين
+            واليونانيين. تُعد أول مدينة يونانية مستقرة داخل مصر.
+          </p>
+          <span class="right-container-arrow"></span>
+        </div>
+      </div>
+
+      <div class="container left-container">
+        <img src="images/rosetta.png" alt="Rosetta Stone" />
+        <div class="text-box" data-target="#rosetta">
+          <h2>حجر رشيد</h2>
+          <small>196 ق.م</small>
+          <p>
+            لوحة بثلاث لغات كشفت سر الهيروغليفية بعد اكتشافها في رشيد عام 1799.
+            أصبحت أهم دليل لفهم تاريخ مصر القديم.
+          </p>
+          <span class="left-container-arrow"></span>
+        </div>
+      </div>
+
+      <div class="container right-container">
+        <img src="images/makar.png" alt="St. Macarius" />
+        <div class="text-box" data-target="#macarius">
+          <h2>دير القديس أنبا مقار الكبير</h2>
+          <small>القرن 4 م</small>
+          <p>
+            من أقدم الأديرة في وادي النطرون ومركز رئيسي لتاريخ الرهبنة القبطية.
+            اشتهر بتراثه العميق ومخطوطاته الفريدة.
+          </p>
+          <span class="right-container-arrow"></span>
+        </div>
+      </div>
+
+      <div class="container left-container">
+        <img src="images/anba.png" alt="St. Bishoy" />
+        <div class="text-box" data-target="#bishoy">
+          <h2>دير الأنبا بيشوي</h2>
+          <small>القرن 4–5 م</small>
+          <p>
+            دير تاريخي أسسه القديس بيشوي، أحد أعلام الرهبنة المصرية. يمتاز
+            بكنائس قديمة وبقايا أثرية وتراث روحي مؤثر.
+          </p>
+          <span class="left-container-arrow"></span>
+        </div>
+      </div>
+
+      <div class="container right-container">
+        <img src="images/syruan.png" alt="Syrian Monastery" />
+        <div class="text-box" data-target="#syrians">
+          <h2>دير السريان</h2>
+          <small>القرن 6 م</small>
+          <p>
+            دير قديم استقر فيه رهبان سريان وجمعوا مخطوطات نادرة. يتميز بعمارة
+            بسيطة وجدارية أثرية عند المدخل.
+          </p>
+          <span class="right-container-arrow"></span>
+        </div>
+      </div>
+
+      <div class="container left-container">
+        <img src="images/kaitbay f.png" alt="Qaitbay" />
+        <div class="text-box" data-target="#qaitbay">
+          <h2>قلعة قايتباي برشيد</h2>
+          <small>1482 م</small>
+          <p>
+            قلعة مملوكية أنشئت للدفاع عن ساحل رشيد من الغارات البحرية. تعد من
+            أبرز القلاع الحربية الباقية في دلتا النيل.
+          </p>
+          <span class="left-container-arrow"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card blue" id="naucratis">
+      <div class="card-header">
+        <div class="date">Naucratis (Kom Gi'eif)</div>
+      </div>
+      <div class="card-body">
+        <div class="gallery">
+          <section id="slider-naucratis">
+            <input type="radio" name="s_nau" checked />
+            <input type="radio" name="s_nau" />
+            <input type="radio" name="s_nau" />
+            <input type="radio" name="s_nau" />
+            <input type="radio" name="s_nau" />
+
+            <label><img src="images/Naucratis.png" alt="Naucratis" /></label>
+            <label
+              ><img src="images/Naucratis/img/n3.jpg" alt="Naucratis 2"
+            /></label>
+            <label><img src="images/n4.jpg" alt="Naucratis 3" /></label>
+            <label><img src="images/n5.jpg" alt="Naucratis 4" /></label>
+            <label><img src="images/n6.jpg" alt="Naucratis 5" /></label>
+          </section>
+        </div>
+        <div class="boxes_animation">
+          <div class="box">
+            <h1>Overview</h1>
+            <p>
+              Naucratis was the first and only permanent Greek colony in Egypt,
+              acting as a pivotal trading hub between Greek and Egyptian
+              civilizations.
+            </p>
+          </div>
+          <div class="box">
+            <h1>History</h1>
+            <p>
+              Founded in the 7th century BC. Pharaoh Amasis II granted it
+              exclusive trading rights, making it the gateway for Greek goods
+              before Alexandria arose.
+            </p>
+          </div>
+          <div class="box">
+            <h1>Key Facts</h1>
+            <p>
+              Famous for the "Hellenion" sanctuary and distinctive pottery.
+              Located near modern-day Kom Gi'eif in Beheira.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="visit">
+          <div class="title">Status</div>
+          <div class="content">Archaeological Site</div>
+        </div>
+        <div class="icon-group">
+          <a
+            style="--color: #7c1515"
+            href="https://www.google.com/maps/search/Naucratis+Kom+Gieif"
+            target="_blank"
+            ><i class="fa-solid fa-location-dot"></i
+          ></a>
+          <div class="title">Location</div>
+        </div>
+        <div class="icon-group">
+          <a
+            style="--color: #0c3188"
+            href="https://www.weather.com/weather/today/l/30.90,30.63"
+            target="_blank"
+            ><i class="fa-solid fa-cloud-sun"></i
+          ></a>
+          <div class="title">Weather</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card blue" id="baramus">
+      <div class="card-header">
+        <div class="date">Monastery of al-Baramus</div>
+      </div>
+      <div class="card-body">
+        <div class="gallery">
+          <section id="slider-baramus">
+            <input type="radio" name="s_bar" checked />
+            <input type="radio" name="s_bar" />
+            <input type="radio" name="s_bar" />
+            <input type="radio" name="s_bar" />
+            <input type="radio" name="s_bar" />
+
+            <label
+              ><img src="./behiera (2)/behiera/al-Baramus/img/5.jpg" alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/al-Baramus/img/4.jpg" alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/al-Baramus/img/2.jpg" alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/al-Baramus/img/3.jpg" alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/al-Baramus/img/1.jpg" alt=""
+            /></label>
+          </section>
+        </div>
+        <div class="boxes_animation">
+          <div class="box">
+            <h1>Overview</h1>
+            <p>
+              The Monastery of the al-Baramos is located in Wadi al-Natrun.
+              First monastic establishment in 340AD.
+            </p>
+          </div>
+          <div class="box">
+            <h1>History</h1>
+            <p>
+              Home to saints like Moses the Black. Rebuilt after multiple
+              attacks.
+            </p>
+          </div>
+          <div class="box">
+            <h1>Key Facts</h1>
+            <p>
+              Named "Baramus" meaning "The Romans". Contains ancient ruins
+              nearby.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="visit">
+          <div class="title">Opening Hours</div>
+          <div class="content">6 AM - 6 PM</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #7c1515" href="#"
+            ><i class="fa-solid fa-location-dot"></i
+          ></a>
+          <div class="title">Location</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #0c3188" href="#"
+            ><i class="fa-solid fa-cloud-sun"></i
+          ></a>
+          <div class="title">Weather</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card blue" id="qaitbay">
+      <div class="card-header">
+        <div class="date">Citadel of Qaitbay in Rosetta</div>
+      </div>
+      <div class="card-body">
+        <div class="gallery">
+          <section id="slider-qaitbay">
+            <input type="radio" name="s_qai" checked />
+            <input type="radio" name="s_qai" />
+            <input type="radio" name="s_qai" />
+            <input type="radio" name="s_qai" />
+            <input type="radio" name="s_qai" />
+
+            <label
+              ><img src="./behiera (2)/behiera/castle/img/c1.jpg" alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/castle/img/c2.jpg" alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/castle/img/c3.jpg" alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/castle/img/c4.jpg" alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/castle/img/c6.jpg" alt=""
+            /></label>
+          </section>
+        </div>
+        <div class="boxes_animation">
+          <div class="box">
+            <h1>Overview</h1>
+            <p>
+              Historic fort on the Nile, built in 1470 AD by Sultan Qaytbay to
+              protect against Ottomans.
+            </p>
+          </div>
+          <div class="box">
+            <h1>History</h1>
+            <p>
+              Used by Ottomans, then French (Fort Julien). Rosetta Stone found
+              here in 1799.
+            </p>
+          </div>
+          <div class="box">
+            <h1>Key Facts</h1>
+            <p>
+              Built using recycled ancient temple blocks. Restored in the 1980s.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="visit">
+          <div class="title">Opening Hours</div>
+          <div class="content">9 AM - 5 PM</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #7c1515" href="#"
+            ><i class="fa-solid fa-location-dot"></i
+          ></a>
+          <div class="title">Location</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #0c3188" href="#"
+            ><i class="fa-solid fa-cloud-sun"></i
+          ></a>
+          <div class="title">Weather</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card blue" id="bishoy">
+      <div class="card-header">
+        <div class="date">Monastery of Saint Bishoy</div>
+      </div>
+      <div class="card-body">
+        <div class="gallery">
+          <section id="slider-bishoy">
+            <input type="radio" name="s_bis" checked />
+            <input type="radio" name="s_bis" />
+            <input type="radio" name="s_bis" />
+            <input type="radio" name="s_bis" />
+            <input type="radio" name="s_bis" />
+
+            <label
+              ><img
+                src="./behiera (2)/behiera/Monastery of Saint Bishoy/img/saint bishoy3.jpg"
+                alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/Monastery of Saint Bishoy/img/saint bishoy4.jpg"
+                alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/Monastery of Saint Bishoy/img/saint bishoy5.jpg"
+                alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/Monastery of Saint Bishoy/img/saint bishoy6.jpg"
+                alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/Monastery of Saint Bishoy/img/saint bishoy7.jpg"
+                alt=""
+            /></label>
+          </section>
+        </div>
+        <div class="boxes_animation">
+          <div class="box">
+            <h1>Overview</h1>
+            <p>
+              Established by St. Bishoy (374 AD). A major monastery in Wadi El
+              Natrun.
+            </p>
+          </div>
+          <div class="box">
+            <h1>History</h1>
+            <p>
+              Fortified against Berbers. Pope Shenouda III developed it
+              significantly.
+            </p>
+          </div>
+          <div class="box">
+            <h1>Key Facts</h1>
+            <p>Contains the Well of the Martyrs and five churches.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="visit">
+          <div class="title">Opening Hours</div>
+          <div class="content">6 AM - 6 PM</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #7c1515" href="#"
+            ><i class="fa-solid fa-location-dot"></i
+          ></a>
+          <div class="title">Location</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #0c3188" href="#"
+            ><i class="fa-solid fa-cloud-sun"></i
+          ></a>
+          <div class="title">Weather</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card blue" id="macarius">
+      <div class="card-header">
+        <div class="date">Monastery of Saint Macarius</div>
+      </div>
+      <div class="card-body">
+        <div class="gallery">
+          <section id="slider-macarius">
+            <input type="radio" name="s_mac" checked />
+            <input type="radio" name="s_mac" />
+            <input type="radio" name="s_mac" />
+            <input type="radio" name="s_mac" />
+            <input type="radio" name="s_mac" />
+
+            <label
+              ><img
+                src="./behiera (2)/behiera/Monastery of Saint Macarius/img/1.jpg"
+                alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/Monastery of Saint Macarius/img/2.jpg"
+                alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/Monastery of Saint Macarius/img/3.jpg"
+                alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/Monastery of Saint Macarius/img/393975212_184692814710058_2813753128454898144_n.jpg"
+                alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/Monastery of Saint Macarius/img/7.png"
+                alt=""
+            /></label>
+          </section>
+        </div>
+        <div class="boxes_animation">
+          <div class="box">
+            <h1>Overview</h1>
+            <p>
+              Founded by St. Macarius (360 AD). Official residence of Coptic
+              patriarchs for centuries.
+            </p>
+          </div>
+          <div class="box">
+            <h1>History</h1>
+            <p>
+              Sacked by Berbers (49 martyrs). Restored massively in modern
+              times.
+            </p>
+          </div>
+          <div class="box">
+            <h1>Key Facts</h1>
+            <p>
+              Housed a great library. Contains the Church of the Forty-Nine
+              Martyrs.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="visit">
+          <div class="title">Opening Hours</div>
+          <div class="content">6 AM - 6 PM</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #7c1515" href="#"
+            ><i class="fa-solid fa-location-dot"></i
+          ></a>
+          <div class="title">Location</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #0c3188" href="#"
+            ><i class="fa-solid fa-cloud-sun"></i
+          ></a>
+          <div class="title">Weather</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card blue" id="rosetta">
+      <div class="card-header">
+        <div class="date">The Rosetta Stone</div>
+      </div>
+      <div class="card-body">
+        <div class="gallery">
+          <section id="slider-rosseta">
+            <input type="radio" name="s_ros" checked />
+            <input type="radio" name="s_ros" />
+            <input type="radio" name="s_ros" />
+            <input type="radio" name="s_ros" />
+            <input type="radio" name="s_ros" />
+
+            <label
+              ><img
+                src="./behiera (2)/behiera/rosetta/images/rosetta.jpg"
+                alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/rosetta/images/mockup.png"
+                alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/rosetta/images/download.jpg"
+                alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/rosetta/images/images.jpg"
+                alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/rosetta/images/9.jpg" alt=""
+            /></label>
+          </section>
+        </div>
+        <div class="boxes_animation">
+          <div class="box">
+            <h1>The Discovery</h1>
+            <p>
+              Discovered in 1799 in Qaitbay Fort. The key to deciphering
+              Hieroglyphs.
+            </p>
+          </div>
+          <div class="box">
+            <h1>The Replica</h1>
+            <p>
+              Original is in London. Rosetta Museum hosts a detailed replica.
+            </p>
+          </div>
+          <div class="box">
+            <h1>Significance</h1>
+            <p>
+              Text in Hieroglyphs, Demotic, and Greek. Deciphered by Champollion
+              in 1822.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="visit">
+          <div class="title">Opening Hours</div>
+          <div class="content">9 AM - 3 PM</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #7c1515" href="#"
+            ><i class="fa-solid fa-location-dot"></i
+          ></a>
+          <div class="title">Location</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #0c3188" href="#"
+            ><i class="fa-solid fa-cloud-sun"></i
+          ></a>
+          <div class="title">Weather</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card blue" id="syrians">
+      <div class="card-header">
+        <div class="date">Monastery of the Syrians</div>
+      </div>
+      <div class="card-body">
+        <div class="gallery">
+          <section id="slider-syrians">
+            <input type="radio" name="s_syr" checked />
+            <input type="radio" name="s_syr" />
+            <input type="radio" name="s_syr" />
+            <input type="radio" name="s_syr" />
+            <input type="radio" name="s_syr" />
+
+            <label
+              ><img src="./behiera (2)/behiera/syrians/img/15.jpg" alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/syrians/img/1.jpg" alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/syrians/img/6.jpg" alt=""
+            /></label>
+            <label
+              ><img
+                src="./behiera (2)/behiera/syrians/img/Dayr al-Suryans.webp"
+                alt=""
+            /></label>
+            <label
+              ><img src="./behiera (2)/behiera/syrians/img/sy3.jpg" alt=""
+            /></label>
+          </section>
+        </div>
+        <div class="boxes_animation">
+          <div class="box">
+            <h1>Overview</h1>
+            <p>
+              Known as Syrian Monastery due to monks who settled there (8th-14th
+              century).
+            </p>
+          </div>
+          <div class="box">
+            <h1>History</h1>
+            <p>
+              Rebuilt in 850 AD. British Museum acquired manuscripts from here.
+            </p>
+          </div>
+          <div class="box">
+            <h1>Key Facts</h1>
+            <p>
+              Dedicated to Virgin Mary. Contains rare frescoes and Syriac
+              manuscripts.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="visit">
+          <div class="title">Opening Hours</div>
+          <div class="content">6 AM - 6 PM</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #7c1515" href="#"
+            ><i class="fa-solid fa-location-dot"></i
+          ></a>
+          <div class="title">Location</div>
+        </div>
+        <div class="icon-group">
+          <a style="--color: #0c3188" href="#"
+            ><i class="fa-solid fa-cloud-sun"></i
+          ></a>
+          <div class="title">Weather</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 1. Scroll Logic
+      const allBoxes = document.querySelectorAll(".text-box[data-target]");
+
+      allBoxes.forEach((box) => {
+        box.addEventListener("click", function () {
+          const targetId = this.getAttribute("data-target");
+          const targetSection = document.querySelector(targetId);
+
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+
+            targetSection.classList.remove("highlight-card");
+            setTimeout(() => {
+              targetSection.classList.add("highlight-card");
+            }, 500);
+            setTimeout(() => {
+              targetSection.classList.remove("highlight-card");
+            }, 2500);
+          }
+        });
+      });
+
+      // 2. Auto-Play Slider Logic
+      const sections = document.querySelectorAll(".gallery section");
+
+      sections.forEach((section) => {
+        const inputs = section.querySelectorAll('input[type="radio"]');
+        let interval;
+
+        const startInterval = () => {
+          interval = setInterval(() => {
+            let currentIndex = -1;
+            inputs.forEach((input, index) => {
+              if (input.checked) currentIndex = index;
+            });
+
+            let nextIndex = currentIndex + 1;
+            if (nextIndex >= inputs.length) nextIndex = 0;
+
+            inputs[nextIndex].checked = true;
+          }, 3000);
+        };
+
+        startInterval();
+
+        section.addEventListener("mouseenter", () => {
+          clearInterval(interval);
+        });
+
+        section.addEventListener("mouseleave", () => {
+          startInterval();
+        });
+      });
+    </script>
+  </body>
+</html>
